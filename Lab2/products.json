@@ -1,0 +1,35 @@
+[
+  {
+    "id": 12,
+    "name": "acer",
+    "price": 23000,
+    "qty": 2
+  },
+  {
+    "id": 120,
+    "name": "samsung s26",
+    "price": 156000,
+    "qty": 1
+  },
+  {
+    "id": 120,
+    "name": "Vivo",
+    "price": 25000,
+    "qty": 3
+  },
+  {
+    "id": null,
+    "price": null,
+    "qty": null
+  },
+  {
+    "id": null,
+    "price": null,
+    "qty": null
+  },
+  {
+    "id": 1200,
+    "price": null,
+    "qty": null
+  }
+]
