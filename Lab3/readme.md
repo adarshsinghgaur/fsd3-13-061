@@ -13,6 +13,6 @@ to create npm project we can
 -it creates a package.json file automatically 
 pacakage.json holds all the information realted to intall
 pacakage form npm
--it also create a folder node_modules automatically
--node_modules holds the pacakage/library files
--generally we ignore the node_module by .gitignore
+- it also create a folder node_modules automatically
+- node_modules holds the pacakage/library files
+- generally we ignore the node_module by .gitignore
