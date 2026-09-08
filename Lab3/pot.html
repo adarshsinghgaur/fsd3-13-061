@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rasoi - Authentic Indian Food</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #fffaf2;
+            color: #292015;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            height: 75px;
+            background: #7b1e12;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 7%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #ffd166;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffd166;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 70px 7%;
+
+            background:
+                linear-gradient(
+                    rgba(62, 25, 10, 0.72),
+                    rgba(62, 25, 10, 0.72)
+                ),
+                url("https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            color: white;
+        }
+
+        .hero-content small {
+            color: #ffd166;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-size: 62px;
+            line-height: 1.1;
+            margin: 18px 0;
+        }
+
+        .hero h1 span {
+            color: #ffd166;
+        }
+
+        .hero p {
+            font-size: 19px;
+            line-height: 1.7;
+            color: #f3e8dc;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #ffd166;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: #ffd166;
+            color: #7b1e12;
+        }
+
+        .secondary {
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ================= SECTION ================= */
+
+        section {
+            padding: 80px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title small {
+            color: #c0392b;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+            margin: 10px 0;
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+        /* ================= SEARCH ================= */
+
+        .search-box {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        #search {
+            width: 350px;
+            max-width: 90%;
+            padding: 14px 20px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            font-size: 15px;
+            background: white;
+        }
+
+        /* ================= CATEGORIES ================= */
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .category {
+            border: none;
+            padding: 11px 22px;
+            border-radius: 25px;
+            background: #f1dfc8;
+            color: #7b1e12;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .category:hover,
+        .category.active {
+            background: #7b1e12;
+            color: white;
+        }
+
+        /* ================= FOOD CARDS ================= */
+
+        .food-container {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 25px;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.09);
+            transition: 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .food-image {
+            height: 210px;
+            overflow: hidden;
+        }
+
+        .food-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .food-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .food-info {
+            padding: 20px;
+        }
+
+        .food-info h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .food-info p {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .food-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 20px;
+            color: #b52b1d;
+            font-weight: bold;
+        }
+
+        .order-btn {
+            border: none;
+            background: #7b1e12;
+            color: white;
+            padding: 9px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .order-btn:hover {
+            background: #a52a1b;
+        }
+
+        /* ================= SPECIAL ================= */
+
+        .special {
+            background: #7b1e12;
+            color: white;
+        }
+
+        .special-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .special-text {
+            flex: 1;
+        }
+
+        .special-text small {
+            color: #ffd166;
+            letter-spacing: 2px;
+        }
+
+        .special-text h2 {
+            font-size: 42px;
+            margin: 15px 0;
+        }
+
+        .special-text p {
+            color: #eadbd0;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .special-image {
+            flex: 1;
+        }
+
+        .special-image img {
+            width: 100%;
+            max-height: 380px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        /* ================= ABOUT ================= */
+
+        .about {
+            text-align: center;
+            background: #fff3df;
+        }
+
+        .about-content {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .about-content p {
+            color: #666;
+            line-height: 1.9;
+            font-size: 17px;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            width: 220px;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+        }
+
+        .feature .icon {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .feature h3 {
+            color: #7b1e12;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* ================= CONTACT ================= */
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact-box {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .contact-box input,
+        .contact-box textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .contact-box textarea {
+            height: 130px;
+            resize: none;
+        }
+
+        .contact-box button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #7b1e12;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #32100b;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        footer p {
+            color: #d7c6bd;
+            margin-top: 8px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 750px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            nav ul {
+                gap: 12px;
+                font-size: 13px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero {
+                min-height: 75vh;
+            }
+
+            .special-content {
+                flex-direction: column;
+            }
+
+            .special-text h2 {
+                font-size: 32px;
+            }
+
+            section {
+                padding: 60px 5%;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+            Rasoi<span>🍛</span>
+        </div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <small>AUTHENTIC INDIAN CUISINE</small>
+
+            <h1>
+                Taste the <span>Tradition</span>
+            </h1>
+
+            <p>
+                Experience the rich flavors, aromatic spices and
+                traditional recipes of India — prepared with love
+                and served with pride.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#menu" class="btn primary">
+                    Explore Menu
+                </a>
+
+                <a href="#about" class="btn secondary">
+                    Our Story
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MENU ================= -->
+
+    <section id="menu">
+
+        <div class="section-title">
+
+            <small>OUR MENU</small>
+
+            <h2>Authentic Indian Dishes</h2>
+
+            <p>
+                From North India to South India, discover traditional flavors.
+            </p>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="🔍 Search your favorite dish..."
+                onkeyup="searchFood()"
+            >
+
+        </div>
+
+
+        <!-- CATEGORIES -->
+
+        <div class="categories">
+
+            <button
+                class="category active"
+                onclick="filterFood('all', this)"
+            >
+                All
+            </button>
+
+            <button
+                class="category"
+                onclick="filterFood('north', this)"
+            >
+                North Indian
+            </button>
+
+            <button
+                class="category"
+                onclick="filterFood('south', this)"
+            >
+                South Indian
+            </button>
+
+            <button
+                class="category"
+                onclick="filterFood('street', this)"
+            >
+                Street Food
+            </button>
+
+            <button
+                class="category"
+                onclick="filterFood('sweet', this)"
+            >
+                Sweets
+            </button>
+
+        </div>
+
+
+        <!-- FOOD -->
+
+        <div class="food-container" id="foodContainer">
+
+
+            <!-- CARD 1 -->
+
+            <div class="food-card" data-category="north">
+
+                <div class="food-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80"
+                        alt="Samosa"
+                    >
+
+                </div>
+
+                <div class="food-info">
+
+                    <h3>Samosa</h3>
+
+                    <p>
+                        Crispy golden pastry filled with spicy potatoes,
+                        peas and aromatic Indian spices.
+                    </p>
+
+                    <div class="food-bottom">
+
+                        <span class="price">₹80</span>
+
+                        <button
+                            class="order-btn"
+                            onclick="orderFood('Samosa')"
+                        >
+                            Order
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 2 -->
+
+            <div class="food-card" data-category="north">
+
+                <div class="food-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=800&q=80"
+                        alt="Butter Chicken"
+                    >
+
+                </div>
+
+                <div class="food-info">
+
+                    <h3>Butter Chicken</h3>
+
+                    <p>
+                        Tender chicken cooked in a creamy tomato gravy
+                        with traditional Indian spices.
+                    </p>
+
+                    <div class="food-bottom">
+
+                        <span class="price">₹320</span>
+
+                        <button
+                            class="order-btn"
+                            onclick="orderFood('Butter Chicken')"
+                        >
+                            Order
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 3 -->
+
+            <div class="food-card" data-category="north">
+
+                <div class="food-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80"
+                        alt="Biryani"
+                    >
+
+                </div>
+
+                <div class="food-info">
+
+                    <h3>Chicken Biryani</h3>
+
+                    <p>
+                        Fragrant basmati rice layered with spiced chicken,
+                        saffron and aromatic herbs.
+                    </p>
+
+                    <div class="food-bottom">
+
+                        <span class="price">₹280</span>
+
+                        <button
+                            class="order-btn"
+                            onclick="orderFood('Chicken Biryani')"
+                        >
+                            Order
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 4 -->
+
+            <div class="food-card" data-category="south">
+
+                <div class="food-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&w=800&q=80"
+                        alt="Dosa"
+                    >
+
+                </div>
+
+                <div class="food-info">
+
+                    <h3>Masala Dosa</h3>
+
+                    <p>
+                        Thin and crispy dosa served with spicy potato
+                        masala, sambar and coconut chutney.
+                    </p>
+
+                    <div class="food-bottom">
+
+                        <span class="price">₹140</span>
+
+                        <button
+                            class="order-btn"
+                            onclick="orderFood('Masala Dosa')"
+                        >
+                            Order
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 5 -->
+
+            <div class="food-card" data-category="street">
+
+                <div class="food-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=800&q=80"
+                        alt="Chole Bhature"
+                    >
+
+                </div>
+
+                <div class="food-info">
+
+                    <h3>Chole Bhature</h3>
+
+                    <p>
+                        Spicy chickpea curry served with fluffy,
+                        deep-fried bhature.
+                    </p>
+
+                    <div class="food-bottom">
+
+                        <span class="price">₹160</span>
+
+                        <button
+                            class="order-btn"
+                            onclick="orderFood('Chole Bhature')"
+                        >
+                            Order
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 6 -->
+
+            <div class="food-card" data-category="street">
+
+                <div class="food-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=800&q=80"
+                        alt="Pani Puri"
+                    >
+
+                </div>
+
+                <div class="food-info">
+
+                    <h3>Pani Puri</h3>
+
+                    <p>
+                        Crispy puris filled with spicy tangy water,
+                        potatoes and chickpeas.
+                    </p>
+
+                    <div class="food-bottom">
+
+                        <span class="price">₹70</span>
+
+                        <button
+                            class="order-btn"
+                            onclick="orderFood('Pani Puri')"
+                        >
+                            Order
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 7 -->
+
+            <div class="food-card" data-category="sweet">
+
+                <div class="food-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=800&q=80"
+                        alt="Gulab Jamun"
+                    >
+
+                </div>
+
+                <div class="food-info">
+
+                    <h3>Gulab Jamun</h3>
+
+                    <p>
+                        Soft milk-solid dumplings soaked in
+                        sweet aromatic sugar syrup.
+                    </p>
+
+                    <div class="food-bottom">
+
+                        <span class="price">₹100</span>
+
+                        <button
+                            class="order-btn"
+                            onclick="orderFood('Gulab Jamun')"
+                        >
+                            Order
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 8 -->
+
+            <div class="food-card" data-category="sweet">
+
+                <div class="food-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=800&q=80"
+                        alt="Indian Sweet"
+                    >
+
+                </div>
+
+                <div class="food-info">
+
+                    <h3>Rasgulla</h3>
+
+                    <p>
+                        Soft and spongy cottage-cheese balls
+                        soaked in light sugar syrup.
+                    </p>
+
+                    <div class="food-bottom">
+
+                        <span class="price">₹90</span>
+
+                        <button
+                            class="order-btn"
+                            onclick="orderFood('Rasgulla')"
+                        >
+                            Order
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SPECIAL ================= -->
+
+    <section class="special">
+
+        <div class="special-content">
+
+            <div class="special-text">
+
+                <small>CHEF'S SPECIAL</small>
+
+                <h2>Royal Indian Thali 👑</h2>
+
+                <p>
+                    A complete Indian dining experience featuring
+                    dal, paneer, seasonal vegetables, rice, roti,
+                    salad, raita, pickle and a traditional sweet.
+                </p>
+
+                <button
+                    class="btn primary"
+                    onclick="orderFood('Royal Indian Thali')"
+                >
+                    Order Thali
+                </button>
+
+            </div>
+
+
+            <div class="special-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=1000&q=80"
+                    alt="Indian Thali"
+                >
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section class="about" id="about">
+
+        <div class="section-title">
+
+            <small>OUR STORY</small>
+
+            <h2>Made With Tradition ❤️</h2>
+
+        </div>
+
+        <div class="about-content">
+
+            <p>
+                At Rasoi, we believe Indian food is more than just a meal.
+                It is a celebration of culture, family and tradition.
+                Our recipes are inspired by generations of Indian cooking,
+                using authentic spices and traditional cooking methods.
+            </p>
+
+
+            <div class="features">
+
+                <div class="feature">
+
+                    <div class="icon">🌶️</div>
+
+                    <h3>Authentic Spices</h3>
+
+                    <p>
+                        Carefully selected Indian spices.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="icon">👨‍🍳</div>
+
+                    <h3>Expert Chefs</h3>
+
+                    <p>
+                        Traditional recipes prepared by skilled chefs.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="icon">🥘</div>
+
+                    <h3>Fresh Food</h3>
+
+                    <p>
+                        Fresh ingredients cooked with love.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTACT ================= -->
+
+    <section class="contact" id="contact">
+
+        <div class="section-title">
+
+            <small>GET IN TOUCH</small>
+
+            <h2>Contact Us</h2>
+
+            <p>
+                Have a question? Send us a message.
+            </p>
+
+        </div>
+
+
+        <div class="contact-box">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Your Name"
+            >
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Your Email"
+            >
+
+            <textarea
+                id="message"
+                placeholder="Your Message"
+            ></textarea>
+
+            <button onclick="sendMessage()">
+                Send Message
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h2>Rasoi 🍛</h2>
+
+        <p>
+            Authentic Indian Food • Traditional Taste • Made With Love
+        </p>
+
+        <p>
+            © 2026 Rasoi. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        /* ================= SEARCH ================= */
+
+        function searchFood() {
+
+            let search =
+                document
+                .getElementById("search")
+                .value
+                .toLowerCase();
+
+            let cards =
+                document.querySelectorAll(".food-card");
+
+
+            cards.forEach(function(card) {
+
+                let text =
+                    card.innerText.toLowerCase();
+
+                if (text.includes(search)) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+
+        /* ================= FILTER ================= */
+
+        function filterFood(category, button) {
+
+            let cards =
+                document.querySelectorAll(".food-card");
+
+            let buttons =
+                document.querySelectorAll(".category");
+
+
+            buttons.forEach(function(btn) {
+
+                btn.classList.remove("active");
+
+            });
+
+            button.classList.add("active");
+
+
+            cards.forEach(function(card) {
+
+                if (
+                    category === "all" ||
+                    card.dataset.category === category
+                ) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+
+        /* ================= ORDER ================= */
+
+        function orderFood(food) {
+
+            alert(
+                "🍛 " +
+                food +
+                " added to your order!"
+            );
+
+        }
+
+
+        /* ================= CONTACT ================= */
+
+        function sendMessage() {
+
+            let name =
+                document.getElementById("name").value;
+
+            let email =
+                document.getElementById("email").value;
+
+            let message =
+                document.getElementById("message").value;
+
+
+            if (
+                name === "" ||
+                email === "" ||
+                message === ""
+            ) {
+
+                alert(
+                    "Please fill all the fields."
+                );
+
+                return;
+            }
+
+
+            alert(
+                "Thank you, " +
+                name +
+                "! Your message has been sent."
+            );
+
+
+            document.getElementById("name").value = "";
+
+            document.getElementById("email").value = "";
+
+            document.getElementById("message").value = "";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
