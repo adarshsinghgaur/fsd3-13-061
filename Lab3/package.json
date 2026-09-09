@@ -1,13 +1,17 @@
 {
   "name": "lab3",
   "version": "1.0.0",
-  "description": "localhost - URL\r 127.0.0.1 - IP address\r ctrl+c - stop the server\r every request from client has a\r pair of (request,response)\r npm stands for node package manager \r used to install,run,unstall ant program/project and pacakage \r -npm install <pacakageName>\r -npm unistall<pacckageName>\r to use npm,the project must be npm project,\r to create npm project we can\r -npm init -y\r -it creates a package.json file automatically \r pacakage.json holds all the information realted to intall\r pacakage form npm\r - it also create a folder node_modules automatically\r - node_modules holds the pacakage/library files\r - generally we ignore the node_module by .gitignore",
+  "description": "",
   "main": "prg1.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node prg3.js",
+    "dev": "nodemon prg4.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "module",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
 }

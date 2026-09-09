@@ -27,8 +27,7 @@ Note: -D flag will install this packages as developer dependency
 -dev -> it will start server in development phase (only for developer)
 -res: it will return contents (json/html/plain) to the user/clint
 -req: it will retrive the information from client to the server
--server send also statuscodes to the client , that indicates the error /success message
- 
+-server send also statuscodes to the client , that indicates the error /success message 
 ## Status Codes 
 -200 ->Ok
 -201 ->Created 
@@ -46,3 +45,26 @@ the content type and status code can be send back to clint by two ways
 1. res.writehead
 2. res.setheader
 3. res.statusCode
+## send html file to client 
+## response as html content
+1. html file
+    - read html file using  createreadStream
+    -pipe it with res object 
+2. html content
+    -send any html tags/content by using 
+    -res.end('<any html tag'>)
+## json
+server returns data only .html content becuse html contain will be written by content developer.
+the data is in json formate 
+json always store data in key, value pair enclosed by {}
+array can be stored by []
+one pair of {} curly brckates will represent one object and it property will be separted by , 
+''' 
+{
+    id:1,
+    name:'mobile',
+    price:25000,
+    rating:4.5,
+    reviews:200
+}
+'''
