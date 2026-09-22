@@ -19,4 +19,19 @@ export const getAllProducts = () => {
   return products;
 };
 
-export const addProduct = () => {};
+export const addProduct = (item) => {
+  item.id = nextId;
+  nextId++;
+  products.push(item);
+  return item;
+};
+
+export const deleteProduct = (pid) => {
+  const item = products.findIndex((prd) => prd.id === pid);
+
+  if (item === -1) return false;
+
+  products.splice(item, 1);
+  console.log("products remaining:", products);
+  return true;
+};
