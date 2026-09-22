@@ -1,11 +1,19 @@
 import http from "http";
-
+import { getAllProducts } from "./products.js";
 const server = http.createServer((req, res) => {
-  if (req.url === "/" && req.method === "GET") {
-    res.statusCode = 200;
-    res.end("Get Request");
-  } else if (req.url === "/" && req.method === "POST") {
-    // console.log("Request",req);
+    if (req.url === "/api/v1/products" && req.method === "GET") {
+        res.statusCode = 200;
+        const data = getAllProducts();
+        res.setHeader("content-type", "application/json");
+        res.end(
+            JSON.stringify({
+                count: data.length,
+                data,
+            }),
+        );
+    
+  } else if (req.url === "/api/v1/products" && req.method === "POST") {
+    // console.log("Request:",req);
     let body = "";
     req.on("data", (chunk) => {
       body += chunk;
@@ -13,9 +21,7 @@ const server = http.createServer((req, res) => {
     req.on("end", () => {
       const product = JSON.parse(body);
       console.log("received product:", product);
-
-      res.statusCode = 200;
-      // res.end("POST Request");
+      res.statusCode = 201;
       res.end(JSON.stringify({ msg: "product added", product }));
     });
   } else if (req.url.startsWith("/products/") && req.method === "PUT") {
@@ -27,17 +33,10 @@ const server = http.createServer((req, res) => {
     });
     req.on("end", () => {
       const product = JSON.parse(body);
-      // console.log("received product:", product);
       product.id = productID;
       res.statusCode = 200;
-
-      // res.statusCode = 200;
-      // res.end("POST Request");
       res.end(JSON.stringify({ msg: "product updated", product }));
     });
-
-    //  res.statusCode = 200;
-    // res.end("PUT Request");
   } else if (req.url === "/" && req.method === "DELETE") {
     res.statusCode = 200;
     res.end("DELETE Request");
@@ -46,4 +45,5 @@ const server = http.createServer((req, res) => {
     res.end("request not found");
   }
 });
+
 server.listen(5000, () => console.log("prg6 is running"));
