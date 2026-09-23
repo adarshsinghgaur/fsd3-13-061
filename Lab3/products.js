@@ -1,16 +1,6 @@
 const products = [
-  {
-    id: 1,
-    name: "marker",
-    qty: 100,
-    price: 15,
-  },
-  {
-    id: 2,
-    name: "pen",
-    qty: 50,
-    price: 10,
-  },
+  { id: 1, name: "marker", qty: 100, price: 15 },
+  { id: 2, name: "duster", qty: 50, price: 10 },
 ];
 
 let nextId = 3;
@@ -28,30 +18,28 @@ export const addProduct = (item) => {
 
 export const deleteProduct = (pid) => {
   const item = products.findIndex((prd) => prd.id === pid);
-
-  if (item === -1) return false;
-
+  if (item == -1) return false;
   products.splice(item, 1);
   console.log("products remaining:", products);
   return true;
 };
-//create a function to update any product given pid call this function into prg6.js and verify its working by EchoAPI
-export const updateProduct = (pid, updateItem)=>{
-  const index = products.findIndex((prd) => prd.id ===pid);
 
-  if (index==-1){
+export const updateProduct = (pid, updateItem) => {
+  const index = products.findIndex((prd) => prd.id === pid);
+
+  if (index == -1) {
     return false;
   }
-  updateItem.id= pid
-  products(index)= updateItem;
-  //Object.assign(products(item),updateItem);
-  return true
-}
+  updateItem.id = pid;
+  products[index] = updateItem;
+  return updateItem;
+};
+
 export const getProductById = (pid) => {
   const index = products.findIndex((prd) => prd.id === pid);
 
-  if (index === -1)
+  if (index == -1) {
     return false;
-
+  }
   return products[index];
 };
