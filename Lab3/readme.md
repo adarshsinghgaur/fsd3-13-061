@@ -83,3 +83,7 @@ two ways
 
 res.setHeader
 res.write
+GET -> no parameter will pass to the server when we recieve all items 
+POST -> to add record we pass the value from body section in json format of API tester
+DELETE -> to delete any product we pass parameter ie. id of the product 
+PUT -> to update any product we pass id from url and data to update from body

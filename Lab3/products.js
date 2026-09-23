@@ -35,3 +35,23 @@ export const deleteProduct = (pid) => {
   console.log("products remaining:", products);
   return true;
 };
+//create a function to update any product given pid call this function into prg6.js and verify its working by EchoAPI
+export const updateProduct = (pid, updateItem)=>{
+  const index = products.findIndex((prd) => prd.id ===pid);
+
+  if (index==-1){
+    return false;
+  }
+  updateItem.id= pid
+  products(index)= updateItem;
+  //Object.assign(products(item),updateItem);
+  return true
+}
+export const getProductById = (pid) => {
+  const index = products.findIndex((prd) => prd.id === pid);
+
+  if (index === -1)
+    return false;
+
+  return products[index];
+};
