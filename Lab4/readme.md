@@ -17,3 +17,22 @@
  json, html file, plain text
 10. we can also add status code with status function (res.status) it can be chain
  with send function
+
+## Map
+this function is used to iterate any array it must return new array
+```
+array.map((item)=>{
+    return
+})
+array.map((item)=>())
+```
+in syntax 1 we have to use explicit return function  whereas not required in 2nd syntax
+2. exclude no. of properties from any json object
+```
+const {p1,p2,...rest}=product;
+log(rest);
+```
+3. sreach- to search any item in json array we use find method it will return NULL on unsuccessfull or object on successfull
+```
+array.find((item)=> item.id===id);
+```
